@@ -5,7 +5,7 @@
   "keywords": ["oxid", "modules", "eShop"],
   "homepage": "https://www.oxid-esales.com/en/home.html",
   "license": [
-    "proprietary"
+    "GPL-3.0-only"
   ],
   "version": "2.0.0",
   "extra": {
