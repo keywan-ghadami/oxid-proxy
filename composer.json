@@ -1,0 +1,24 @@
+{
+  "name": "oxid-professional-services/proxy",
+  "description": "Enables you to define a proxy server for CURL calls",
+  "type": "oxideshop-module",
+  "keywords": ["oxid", "modules", "eShop"],
+  "homepage": "https://www.oxid-esales.com/en/home.html",
+  "license": [
+    "proprietary"
+  ],
+  "version": "2.0.0",
+  "extra": {
+    "oxideshop": {
+      "target-directory": "oxps/proxy"
+    }
+  },
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "OxidProfessionalServices\\Proxy\\": "../../../source/modules/oxps/proxy"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OX>
+<OXMENU id="NAVIGATION_ESHOPADMIN">
+    <MAINMENU id="mxservice">
+        <SUBMENU id="oxpsproxy" cl="oxpsproxydashboard" />
+    </MAINMENU>
+</OXMENU>
+</OX>
