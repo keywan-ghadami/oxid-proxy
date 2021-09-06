@@ -62,18 +62,24 @@ class Curl extends Curl_parent
      * @return string|null
      */
     public function getProxy($scheme){
+        /**
+         * We are reading module proxy config first and then default config
+         */
+        $proxy_conf = Registry::getConfig()->getConfigParam('oxpsproxy');
+        $schemeConfRequest = strtoupper($scheme);
+        if (is_array($proxy_conf) && array_key_exists($schemeConfRequest, $proxy_conf)) {
+            $proxy = $proxy_conf[$schemeConfRequest];
+            return $proxy;
+        }
+
+        /**
+         * FIXME: We need to optimize to set this proxy config in better way.
+         */
         $proxy_conf = stream_context_get_options(stream_context_get_default());
 
         if (array_key_exists($scheme, $proxy_conf)) {
             $settings=$proxy_conf[$scheme];
             $proxy = $settings['proxy'];
-            return $proxy;
-        }
-
-        $proxy_conf = Registry::getConfig()->getConfigParam('oxpsproxy');
-
-        if (is_array($proxy_conf) && array_key_exists($scheme, $proxy_conf)) {
-            $proxy = $proxy_conf[$scheme];
             return $proxy;
         }
 
