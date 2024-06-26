@@ -39,6 +39,7 @@ class Curl extends Curl_parent
         $proxy = $this->getProxyForUrl($targetUrl);
         if ($proxy) {
             $proxyParts = parse_url($proxy);
+            $this->_setOpt(CURLOPT_PROXYTYPE, $proxyParts['scheme']);
             $this->_setOpt(CURLOPT_PROXY, $proxyParts['host']);
             $this->_setOpt(CURLOPT_PROXYPORT, $proxyParts['port']);
         }
@@ -69,17 +70,6 @@ class Curl extends Curl_parent
         $schemeConfRequest = strtoupper($scheme);
         if (is_array($proxy_conf) && array_key_exists($schemeConfRequest, $proxy_conf)) {
             $proxy = $proxy_conf[$schemeConfRequest];
-            return $proxy;
-        }
-
-        /**
-         * FIXME: We need to optimize to set this proxy config in better way.
-         */
-        $proxy_conf = stream_context_get_options(stream_context_get_default());
-
-        if (array_key_exists($scheme, $proxy_conf)) {
-            $settings=$proxy_conf[$scheme];
-            $proxy = $settings['proxy'];
             return $proxy;
         }
 
