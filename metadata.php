@@ -35,8 +35,8 @@ $aModule = [
         \OxidEsales\Eshop\Core\Config::class =>  Config::class,
     ],
     'events'      => [
-        'onActivate'   => 'oxpsProxyEvents::onActivate',
-        'onDeactivate' => 'oxpsProxyEvents::onDeactivate',
+//        'onActivate'   => 'oxpsProxyEvents::onActivate',
+//        'onDeactivate' => 'oxpsProxyEvents::onDeactivate',
     ],
     'templates' => [
         "proxyTest.tpl" => "oxps/proxy/tpl/proxyTest.tpl"
