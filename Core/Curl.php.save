@@ -16,9 +16,7 @@
 
 namespace OxidProfessionalServices\Proxy\Core;
 
-use OxidEsales\EshopCommunity\Internal\Framework\Module\Facade\ModuleSettingServiceInterface;
 use OxidEsales\Eshop\Core\Registry;
-use OxidEsales\EshopCommunity\Core\Di\ContainerFacade;
 
 /**
  * Class oxpsprox_oxcurl
@@ -27,15 +25,28 @@ use OxidEsales\EshopCommunity\Core\Di\ContainerFacade;
 class Curl extends Curl_parent
 {
 
+    public function __construct()
+    {
+        //CURLOPT_PROXY
+print "asdfsa1";
+        $this->_aOptions['CURLOPT_CONNECTTIMEOUT'] = 1;
+        //$this->_aOptions['CURLOPT_TIMEOUT'] = 1;
+
+    }
+
     protected function setOptions() {
+print "asdfsa2";
         $targetUrl = $this->getUrl();
         $proxy = $this->getProxyForUrl($targetUrl);
         if ($proxy) {
-            $this->setOpt(CURLOPT_CONNECTTIMEOUT, 1);
-            $this->setOpt(CURLOPT_PROXY, $proxy);
+            $proxyParts = parse_url($proxy);
+            $this->_setOpt(CURLOPT_PROXYTYPE, $proxyParts['scheme']);
+            $this->_setOpt(CURLOPT_PROXY, $proxyParts['host']);
+            $this->_setOpt(CURLOPT_PROXYPORT, $proxyParts['port']);
         }
         parent::setOptions();
     }
+
 
     /**
      * @param $url
@@ -53,11 +64,11 @@ class Curl extends Curl_parent
      * @return string|null
      */
     public function getProxy($scheme){
+print "asdfsa3";
         /**
          * We are reading module proxy config first and then default config
          */
-        $moduleSettingService = ContainerFacade::get(ModuleSettingServiceInterface::class);
-        $proxy_conf = $moduleSettingService->getCollection('oxpsproxy', 'proxy');
+        $proxy_conf = Registry::getConfig()->getConfigParam('oxpsproxy');
         $schemeConfRequest = strtoupper($scheme);
         if (is_array($proxy_conf) && array_key_exists($schemeConfRequest, $proxy_conf)) {
             $proxy = $proxy_conf[$schemeConfRequest];

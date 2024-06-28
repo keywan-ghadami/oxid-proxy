@@ -14,7 +14,7 @@ $sMetadataVersion = '2.1';
  * Module information
  */
 $aModule = [
-    'id'          => 'oxps/proxy',
+    'id'          => 'proxy',
     'title'       => [
         'de'    =>  'OXPS :: Proxy',
         'en'    =>  'OXPS :: proxy',
@@ -24,7 +24,7 @@ $aModule = [
         'en'    =>  'Enables you to define a proxy server',
     ],
     'thumbnail'   => 'out/pictures/picture.png',
-    'version'     => '2.0.0',
+    'version'     => '3.0.0',
     'author'      => 'oxps',
     'url'         => 'https://www.oxid-esales.com',
     'controllers'  => [
