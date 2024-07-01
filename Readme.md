@@ -12,7 +12,7 @@ Every oxid module creates overhead for maintainance and run time complexity.
 For stting a proxy normally it should be enough to set the enviroment variables http_proxy and https_proxy
 
 ## Setting Proxy for FPM
-e.g. for php fpm: you can do it like this (given your proxy IP is 111.111.111.111):
+e.g. for php fpm: you can do it like this (given your proxy IP is 127.0.0.1 and the Port is 8080):
 ; Start a new pool named 'www'.
 ; the variable $pool can be used in any directive and will be replaced by the
 ; pool name ('www' here)
